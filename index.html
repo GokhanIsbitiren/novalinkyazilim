@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ren Consultancy — Strategic B2B Solutions</title>
+  <meta name="description" content="SaaS B2B e-commerce with WhatsApp integration, digital marketing, channel animation, and pricing optimization. Based in Manisa, Turkiye." />
+  <style>
+    :root{
+      --bg:#f3f4f6; --surface:#fff; --text:#0f172a; --muted:#6b7280; --border:rgba(15,23,42,.08);
+      --brand:#3b82f6; --gradA:#1f2a48; --gradB:#3b82f6; --ring:rgba(59,130,246,.35);
+      --maxw:1100px; --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);
+      font:16px/1.55 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* NAV */
+    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);
+      backdrop-filter:saturate(120%) blur(10px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+    .logo{font-weight:750;letter-spacing:.2px; font-size:1.6rem; line-height:1}
+    .navlinks{display:flex;gap:18px;align-items:center}
+    .navlinks a{color:var(--text)}
+    .getstarted{padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,var(--gradA),var(--gradB));
+      color:#fff;border:1px solid rgba(0,0,0,.05);box-shadow:0 6px 18px rgba(59,130,246,.25)}
+
+    /* Lang switcher */
+    .lang{display:flex;gap:8px;align-items:center;margin-left:10px}
+    .lang button{
+      display:inline-flex;align-items:center;gap:6px;
+      border:1px solid var(--border);background:var(--surface);padding:6px 10px;border-radius:10px;
+      cursor:pointer;font-weight:600
+    }
+    .lang button.active{outline:2px solid var(--ring)}
+
+    /* HERO */
+    .hero{padding:92px 0 34px;text-align:center;border-bottom:1px solid var(--border);
+      background:
+        radial-gradient(900px 360px at 10% -20%, rgba(59,130,246,.16), transparent 60%),
+        radial-gradient(800px 320px at 90% -15%, rgba(0,194,168,.14), transparent 60%)}
+    .hero h1{font-size:clamp(34px,6vw,56px);line-height:1.05;margin:0 0 12px;font-weight:800}
+    .hero h1 .accent{color:#2e5fbf}
+    .hero p{color:var(--muted);max-width:900px;margin:0 auto 22px}
+    .actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin:16px 0 16px}
+    .btn{display:inline-block;padding:14px 18px;border-radius:14px;border:1px solid var(--border);font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,var(--gradA),var(--gradB));color:#fff;box-shadow:0 8px 24px rgba(59,130,246,.25)}
+    .btn.secondary{background:var(--surface);color:var(--text)}
+
+    /* QUICK SUMMARY TILES */
+    .quick{display:grid;gap:22px;max-width:900px;margin:18px auto 0}
+    @media(min-width:900px){.quick{grid-template-columns:repeat(4,1fr)}}
+    @media(max-width:899px){.quick{grid-template-columns:repeat(2,1fr)}}
+    .qitem{display:flex;flex-direction:column;align-items:center;gap:10px}
+    .qico{width:72px;height:72px;border-radius:50%;background:rgba(59,130,246,.12);
+      display:grid;place-items:center;color:#2f6de6}
+    .qlabel{font-weight:700}
+    .qsub{font-size:14px;color:var(--muted)}
+
+    /* Sections */
+    section{padding:70px 0;border-bottom:1px solid var(--border)}
+    .center{text-align:center}
+    h2{font-size:clamp(26px,4vw,38px);margin:0 0 8px}
+    .sub{color:var(--muted);margin:0 0 28px}
+
+    .cards{display:grid;gap:18px;text-align:left}
+    @media(min-width:940px){.cards{grid-template-columns:1fr 1fr}}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+    .head{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+    .head .ico{width:36px;height:36px;border-radius:10px;background:rgba(59,130,246,.12);
+      color:#2f6de6;display:grid;place-items:center;flex:0 0 auto}
+    .kicker{color:#2f6de6;font-weight:600;margin:2px 0 12px}
+    .muted{color:var(--muted)}
+    .bullets{margin:12px 0 0 18px}
+    .bullets li{margin:8px 0}
+    .steps{margin:10px 0 0;padding:0;list-style:none}
+    .steps li{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+    .dot{width:28px;height:28px;border-radius:999px;display:grid;place-items:center;
+      color:#2f6de6;background:rgba(59,130,246,.1);font-weight:700;flex:0 0 auto}
+
+    /* Contact */
+    .contact .title{font-size:clamp(26px,4vw,40px);text-align:center;margin-bottom:8px}
+    .contact .sub{text-align:center}
+    .contact .wrap{margin-top:22px}
+    .cardbig{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:22px}
+    .contactgrid{display:grid;gap:22px}
+    @media(min-width:920px){.contactgrid{grid-template-columns:1.2fr 1fr}}
+    .row{display:flex;gap:12px;align-items:flex-start;margin:14px 0}
+    .row .ico{width:40px;height:40px;border-radius:12px;background:rgba(59,130,246,.12);
+      display:grid;place-items:center;color:#2f6de6;flex:0 0 auto}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .btn.outline{background:transparent;border:1px solid #cbd5e1}
+
+    /* Footer */
+    footer{padding:34px 0;color:#e5e7eb;background:#111827}
+    .footwrap{display:grid;gap:18px}
+    @media(min-width:900px){.footwrap{grid-template-columns:1.1fr .9fr .8fr}}
+    footer h4{margin:0 0 8px}
+    footer a{color:#c7d2fe}
+    .tiny{font-size:14px;color:#94a3b8}
+    hr.line{border:0;border-top:1px solid rgba(255,255,255,.08);margin:16px 0 0}
+
+    a:focus,button:focus{outline:2px solid var(--ring);outline-offset:2px;border-radius:10px}
+  </style>
+  <link rel="canonical" href="https://novalinkyazilim.com/">
+  <link rel="alternate" hreflang="en" href="https://novalinkyazilim.com/?lang=en">
+  <link rel="alternate" hreflang="tr" href="https://novalinkyazilim.com/?lang=tr">
+  <link rel="alternate" hreflang="fr" href="https://novalinkyazilim.com/?lang=fr">
+  <link rel="alternate" hreflang="x-default" href="https://novalinkyazilim.com/">
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="logo">Ren Consultancy</div>
+        <nav class="navlinks">
+          <a href="#services" data-i18n="nav_services">Services</a>
+          <a href="#contact" data-i18n="nav_contact">Contact</a>
+          <a class="getstarted" href="#contact" data-i18n="nav_get_started">Get Started</a>
+          <div class="lang" aria-label="Language selector">
+            <button type="button" data-lang="en" aria-label="English">🇬🇧 EN</button>
+            <button type="button" data-lang="tr" aria-label="Türkçe">🇹🇷 TR</button>
+            <button type="button" data-lang="fr" aria-label="Français">🇫🇷 FR</button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1 data-i18n-html="hero_title">Grow Your Business with <span class="accent">Strategic B2B Solutions</span></h1>
+      <p class="muted" data-i18n="hero_sub">SaaS B2B e-commerce with WhatsApp integration, branding, digital marketing, and pricing optimization. Based in Manisa, Turkiye.</p>
+      <div class="actions">
+        <a class="btn primary" href="#contact" data-i18n="cta_start_project">Start Your Project →</a>
+        <a class="btn secondary" href="#services" data-i18n="cta_view_services">View Services</a>
+      </div>
+
+      <!-- quick tiles -->
+      <div class="quick" aria-label="Service summary">
+        <div class="qitem">
+          <div class="qico" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M7 17l-4 4V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="qlabel" data-i18n="quick_ecom">E-commerce</div>
+          <div class="qsub" data-i18n="quick_ecom_sub">WhatsApp Integration</div>
+        </div>
+        <div class="qitem">
+          <div class="qico" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 17l7-7 4 4 7-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="qlabel" data-i18n="quick_dm">Digital Marketing</div>
+          <div class="qsub" data-i18n="quick_dm_sub">Email, SEO, WhatsApp</div>
+        </div>
+        <div class="qitem">
+          <div class="qico" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M16 14a4 4 0 1 1 4 4M10 14a4 4 0 1 0-8 0M14 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M22 21v-2a4 4 0 0 0-4-4h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="qlabel" data-i18n="quick_channel">Channel Animation</div>
+          <div class="qsub" data-i18n="quick_channel_sub">Partner Strategies</div>
+        </div>
+        <div class="qitem">
+          <div class="qico" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 7a4 4 0 1 0-8 0c0 2.5 4 3 4 5s-4 2.5-4 5a4 4 0 1 0 8 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          </div>
+          <div class="qlabel" data-i18n="quick_pricing">Pricing Strategy</div>
+          <div class="qsub" data-i18n="quick_pricing_sub">B2B Optimization</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="center">
+        <h2 data-i18n="services_title">Our Services</h2>
+        <p class="sub" data-i18n="services_sub">Comprehensive solutions to accelerate your B2B growth through technology, marketing, and strategic partnerships.</p>
+      </div>
+
+      <div class="cards">
+        <!-- E-commerce -->
+        <div class="card">
+          <div class="head">
+            <div class="ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 17l-4 4V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 style="margin:0" data-i18n="card_ecom_title">E-commerce</h3>
+              <div class="kicker" data-i18n-html="card_ecom_kicker">
+              </div>
+            </div>
+          </div>
+          <p class="muted" data-i18n="card_ecom_body">Streamline your B2B sales process with WhatsApp-integrated e-commerce solutions that connect directly to your ERP system.</p>
+          <strong data-i18n="key_features">Key Features:</strong>
+          <ul class="bullets" data-i18n-html="card_ecom_features">
+            <li>WhatsApp-first ordering: Customers request quotes and place orders in WhatsApp</li>
+            <li>Quotations & files: Auto-generate branded PDF/Excel quotes</li>
+            <li>Stock validation: Check availability in your ERP before taking payment</li>
+            <li>Secure payments: Hosted checkout links (Iyzico, Network International, etc.) with automatic success/failure handling</li>
+            <li>ERP integration: Push confirmed orders into your ERP such as Odoo, Microsoft Dynamics 365 Business Central, etc.</li>
+            <li>Multi-tenant: Built for distributors and brands</li>
+          </ul>
+          <strong style="display:block;margin-top:14px" data-i18n="how_it_works">How it works:</strong>
+          <ul class="steps" data-i18n-html="card_ecom_steps">
+            <li><span class="dot">1</span><span>Customer requests a quote on WhatsApp</span></li>
+            <li><span class="dot">2</span><span>System returns quote + stock status</span></li>
+            <li><span class="dot">3</span><span>Customer taps a secure payment link</span></li>
+            <li><span class="dot">4</span><span>Order posts to ERP and confirmation is sent on WhatsApp & email</span></li>
+          </ul>
+        </div>
+
+        <!-- Digital Marketing -->
+        <div class="card">
+          <div class="head">
+            <div class="ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 17l7-7 4 4 7-7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3 style="margin:0" data-i18n="card_dm_title">Digital Marketing</h3>
+              <div class="kicker" data-i18n="card_dm_kicker">Email, SEO, WhatsApp Marketing</div>
+            </div>
+          </div>
+          <p class="muted" data-i18n="card_dm_body">Comprehensive digital marketing strategies with emphasis on email campaigns, search optimization, and WhatsApp marketing compliance.</p>
+          <strong data-i18n="key_features">Key Features:</strong>
+          <ul class="bullets" data-i18n-html="card_dm_features">
+            <li>Email marketing: Campaign planning, templates, deliverability, and post-purchase flows</li>
+            <li>SEO: Technical audits, on-page fixes, and content plans tailored for B2B</li>
+            <li>WhatsApp marketing: Template setup/approval, audience segmentation, and performance tracking compliant with WhatsApp policies</li>
+            <li>Performance tracking and optimization</li>
+            <li>B2B-focused content strategies</li>
+          </ul>
+        </div>
+
+        <!-- Channel Animation -->
+        <div class="card">
+          <div class="head">
+            <div class="ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M16 14a4 4 0 1 1 4 4M10 14a4 4 0 1 0-8 0M14 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M22 21v-2a4 4 0 0 0-4-4h-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3 style="margin:0" data-i18n="card_channel_title">Channel Animation</h3>
+              <div class="kicker" data-i18n="card_channel_kicker">Distributor & Partner Strategies</div>
+            </div>
+          </div>
+          <strong data-i18n="key_features">Key Features:</strong>
+          <ul class="bullets" data-i18n-html="card_channel_features">
+            <li>Market entry plans for new territories</li>
+            <li>Commercial policy development</li>
+            <li>Rebate program design and management</li>
+            <li>MDF (Market Development Fund) activities</li>
+            <li>Targeted campaigns to activate 2nd-tier customers</li>
+            <li>Partner enablement and training programs</li>
+            <li>Performance monitoring and optimization</li>
+          </ul>
+        </div>
+
+        <!-- Pricing Strategy -->
+        <div class="card">
+          <div class="head">
+            <div class="ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 7a4 4 0 1 0-8 0c0 2.5 4 3 4 5s-4 2.5-4 5a4 4 0 1 0 8 0" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h3 style="margin:0" data-i18n="card_pricing_title">Pricing Strategy</h3>
+              <div class="kicker" data-i18n="card_pricing_kicker">End-to-End B2B Pricing Support</div>
+            </div>
+          </div>
+          <p class="muted" data-i18n="card_pricing_body">Comprehensive B2B pricing frameworks that balance competitiveness with profitability across your product portfolio.</p>
+          <strong data-i18n="key_features">Key Features:</strong>
+          <ul class="bullets" data-i18n-html="card_pricing_features">
+            <li>List price architecture development</li>
+            <li>Commercial policy & discount structures</li>
+            <li>MDF and rebate frameworks</li>
+            <li>Product-mix pricing strategies (high-runner vs. long-tail)</li>
+            <li>Margin optimization and tracking</li>
+            <li>Competitiveness analysis and monitoring</li>
+            <li>Dynamic pricing recommendations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="title" data-i18n="contact_title">Get Started Today</div>
+      <p class="sub" data-i18n="contact_sub">Ready to transform your B2B operations? Contact us to discuss your project and discover how we can help you grow.</p>
+      <div class="wrap">
+        <div class="cardbig">
+          <div class="contactgrid">
+            <div>
+              <h3 style="margin:0 0 10px">Ren Consultancy</h3>
+              <p class="muted" style="margin:0 0 16px" data-i18n="contact_city">Manisa, Turkiye</p>
+
+              <div class="row">
+                <div class="ico" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 0-8 6L4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <div><strong data-i18n="label_email">Email</strong></div>
+                  <a href="mailto:info@novalinkyazilim.com">info@novalinkyazilim.com</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="ico" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 12.8 19.8 19.8 0 0 1 0 4.18 2 2 0 0 1 2 2h2a2 2 0 0 1 2 1.72c.12.9.3 1.78.56 2.63a2 2 0 0 1-.45 2.11L5.1 9.9a16 16 0 0 0 6 6l1.44-1.02a2 2 0 0 1 2.11-.45c.85 .26 1.73 .44 2.63 .56A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <div><strong data-i18n="label_phone">Phone</strong></div>
+                  <a href="tel:+971549914951">+971 54 991 4951</a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="ico" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-5.33-7-11a7 7 0 0 1 14 0c0 5.67-7 11-7 11Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.6"/></svg>
+                </div>
+                <div>
+                  <div><strong data-i18n="label_location">Location</strong></div>
+                  <div class="muted" data-i18n="contact_city">Manisa, Turkiye</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 style="margin:0 0 8px" data-i18n="start_project">Start Your Project</h4>
+              <p class="muted" data-i18n="start_project_body">Whether you need e-commerce integration, digital marketing, channel strategy, or pricing optimization, we’re here to help you achieve your business goals.</p>
+              <div class="cta-row">
+                <a class="btn primary" href="mailto:info@novalinkyazilim.com" data-i18n="cta_send_email">✉️ Send Email</a>
+                <a class="btn outline" href="tel:+905300675564" data-i18n="cta_call_now">📞 Call Now</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footwrap">
+        <div>
+          <h4>Ren Consultancy</h4>
+          <p class="tiny" data-i18n="footer_tagline">Driving B2B growth through technology, marketing, and strategic partnerships.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer_services">Services</h4>
+          <div class="tiny">
+            <div data-i18n="f_ecom">SaaS B2B E-commerce</div>
+            <div data-i18n="f_dm">Digital Marketing</div>
+            <div data-i18n="f_channel">Channel Animation</div>
+            <div data-i18n="f_pricing">Pricing Strategy</div>
+          </div>
+        </div>
+        <div>
+          <h4 data-i18n="footer_legal">Legal</h4>
+          <div class="tiny">
+            <div><a href="/privacy.html" data-i18n="privacy">Privacy Policy</a></div>
+            <div><a href="/data-deletion.html" data-i18n="data_deletion">Data Deletion</a></div>
+          </div>
+        </div>
+      </div>
+      <hr class="line" />
+      <div class="tiny" style="margin-top:12px">© <span id="year"></span> Ren Consultancy. <span data-i18n="rights">All rights reserved.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Translations (HTML allowed for *_html keys)
+    const I18N = {
+      en: {
+        _title: "Ren Consultancy — Strategic B2B Solutions",
+        _desc: "SaaS B2B e-commerce with WhatsApp integration, digital marketing, channel animation, and pricing optimization. Based in Manisa, Turkiye.",
+        nav_services:"Services", nav_contact:"Contact", nav_get_started:"Get Started",
+        hero_title:'Grow Your Business with <span class="accent">Strategic B2B Solutions</span>',
+        hero_sub:"SaaS B2B e-commerce with WhatsApp integration, branding, digital marketing, and pricing optimization. Based in Manisa, Turkiye.",
+        cta_start_project:"Start Your Project →", cta_view_services:"View Services",
+        quick_ecom:"E-commerce", quick_ecom_sub:"WhatsApp Integration",
+        quick_dm:"Digital Marketing", quick_dm_sub:"Email, SEO, WhatsApp",
+        quick_channel:"Channel Animation", quick_channel_sub:"Partner Strategies",
+        quick_pricing:"Pricing Strategy", quick_pricing_sub:"B2B Optimization",
+        services_title:"Our Services",
+        services_sub:"Comprehensive solutions to accelerate your B2B growth through technology, marketing, and strategic partnerships.",
+        card_ecom_title:"E-commerce", card_ecom_kicker:'<a href="http://www.novalinkyazilim.com/b2b.html" target="_blank" rel="noopener">SaaS B2B e-commerce with WhatsApp (B2B Order Hub)</a>',
+        card_ecom_body:"Streamline your B2B sales process with WhatsApp-integrated e-commerce solutions that connect directly to your ERP system.",
+        key_features:"Key Features:", how_it_works:"How it works:",
+        card_ecom_features:`<li>WhatsApp-first ordering: Customers request quotes and place orders in WhatsApp</li>
+<li>Quotations & files: Auto-generate branded PDF/Excel quotes</li>
+<li>Stock validation: Check availability in your ERP before taking payment</li>
+<li>Secure payments: Hosted checkout links (Iyzico, Network International, etc.) with automatic success/failure handling</li>
+<li>ERP integration: Push confirmed orders into your ERP such as Odoo, Microsoft Dynamics 365 Business Central, etc.</li>
+<li>Multi-tenant: Built for distributors and brands</li>`,
+        card_ecom_steps:`<li><span class="dot">1</span><span>Customer requests a quote on WhatsApp</span></li>
+<li><span class="dot">2</span><span>System returns quote + stock status</span></li>
+<li><span class="dot">3</span><span>Customer taps a secure payment link</span></li>
+<li><span class="dot">4</span><span>Order posts to ERP and confirmation is sent on WhatsApp & email</span></li>`,
+        card_dm_title:"Digital Marketing", card_dm_kicker:"Email, SEO, WhatsApp Marketing",
+        card_dm_body:"Comprehensive digital marketing strategies with emphasis on email campaigns, search optimization, and WhatsApp marketing compliance.",
+        card_dm_features:`<li>Email marketing: Campaign planning, templates, deliverability, and post-purchase flows</li>
+<li>SEO: Technical audits, on-page fixes, and content plans tailored for B2B</li>
+<li>WhatsApp marketing: Template setup/approval, audience segmentation, and performance tracking compliant with WhatsApp policies</li>
+<li>Performance tracking and optimization</li>
+<li>B2B-focused content strategies</li>`,
+        card_channel_title:"Channel Animation", card_channel_kicker:"Distributor & Partner Strategies",
+        card_channel_features:`<li>Market entry plans for new territories</li>
+<li>Commercial policy development</li>
+<li>Rebate program design and management</li>
+<li>MDF (Market Development Fund) activities</li>
+<li>Targeted campaigns to activate 2nd-tier customers</li>
+<li>Partner enablement and training programs</li>
+<li>Performance monitoring and optimization</li>`,
+        card_pricing_title:"Pricing Strategy", card_pricing_kicker:"End-to-End B2B Pricing Support",
+        card_pricing_body:"Comprehensive B2B pricing frameworks that balance competitiveness with profitability across your product portfolio.",
+        card_pricing_features:`<li>List price architecture development</li>
+<li>Commercial policy & discount structures</li>
+<li>MDF and rebate frameworks</li>
+<li>Product-mix pricing strategies (high-runner vs. long-tail)</li>
+<li>Margin optimization and tracking</li>
+<li>Competitiveness analysis and monitoring</li>
+<li>Dynamic pricing recommendations</li>`,
+        contact_title:"Get Started Today",
+        contact_sub:"Ready to transform your B2B operations? Contact us to discuss your project and discover how we can help you grow.",
+        contact_city:"Manisa, Turkiye",
+        label_email:"Email", label_phone:"Phone", label_location:"Location",
+        start_project:"Start Your Project",
+        start_project_body:"Whether you need e-commerce integration, digital marketing, channel strategy, or pricing optimization, we’re here to help you achieve your business goals.",
+        cta_send_email:"✉️ Send Email", cta_call_now:"📞 Call Now",
+        footer_tagline:"Driving B2B growth through technology, marketing, and strategic partnerships.",
+        footer_services:"Services", footer_legal:"Legal",
+        f_ecom:"SaaS B2B E-commerce", f_dm:"Digital Marketing", f_channel:"Channel Animation", f_pricing:"Pricing Strategy",
+        privacy:"Privacy Policy", data_deletion:"Data Deletion", rights:"All rights reserved."
+      },
+      tr: {
+        _title:"Ren Consultancy — Stratejik B2B Çözümler",
+        _desc:"WhatsApp entegrasyonlu SaaS B2B e-ticaret, dijital pazarlama, kanal aktivasyonu ve fiyatlandırma optimizasyonu. Manisa, Turkiye merkezli.",
+        nav_services:"Hizmetler", nav_contact:"İletişim", nav_get_started:"Hemen Başla",
+        hero_title:'İşinizi <span class="accent">Stratejik B2B Çözümlerle</span> Büyütün',
+        hero_sub:"WhatsApp entegrasyonlu SaaS B2B e-ticaret, markalama, dijital pazarlama ve fiyatlandırma optimizasyonu. Merkez: Manisa, Turkiye.",
+        cta_start_project:"Projenizi Başlatın →", cta_view_services:"Hizmetleri Görüntüle",
+        quick_ecom:"E-ticaret", quick_ecom_sub:"WhatsApp Entegrasyonu",
+        quick_dm:"Dijital Pazarlama", quick_dm_sub:"E-posta, SEO, WhatsApp",
+        quick_channel:"Kanal Aktivasyonu", quick_channel_sub:"İş Ortağı Stratejileri",
+        quick_pricing:"Fiyatlandırma Stratejisi", quick_pricing_sub:"B2B Optimizasyonu",
+        services_title:"Hizmetlerimiz",
+        services_sub:"Teknoloji, pazarlama ve stratejik ortaklıklarla B2B büyümenizi hızlandıracak uçtan uca çözümler.",
+        card_ecom_title:"E-ticaret", card_ecom_kicker:'<a href="http://www.novalinkyazilim.com/b2b.html" target="_blank" rel="noopener">WhatsApp’lı SaaS B2B e-ticaret (B2B Order Hub)</a>',
+        card_ecom_body:"B2B satış sürecinizi WhatsApp entegre e-ticaret çözümleriyle ERP’nize doğrudan bağlayarak sadeleştirin.",
+        key_features:"Öne Çıkanlar:", how_it_works:"Nasıl çalışır:",
+        card_ecom_features:`<li>WhatsApp odaklı sipariş: Müşteriler WhatsApp üzerinden teklif ister ve sipariş geçer</li>
+<li>Teklif & dosyalar: Markalı PDF/Excel tekliflerin otomatik üretilmesi</li>
+<li>Stok doğrulama: Ödeme almadan önce ERP’de uygunluk kontrolü</li>
+<li>Güvenli ödemeler: Başarılı/başarısız geri dönüşleriyle barındırılan ödeme sayfaları (İyzico, Network International vb.)</li>
+<li>ERP entegrasyonu: Onaylı siparişlerin Odoo, Microsoft Dynamics 365 Business Central vb. ERP’lere aktarılması</li>
+<li>Çok kiracılı yapı: Distribütör ve markalar için tasarlandı</li>`,
+        card_ecom_steps:`<li><span class="dot">1</span><span>Müşteri WhatsApp’ta teklif ister</span></li>
+<li><span class="dot">2</span><span>Sistem teklif + stok durumunu döndürür</span></li>
+<li><span class="dot">3</span><span>Müşteri güvenli ödeme bağlantısına tıklar</span></li>
+<li><span class="dot">4</span><span>Sipariş ERP’ye düşer, onay WhatsApp ve e-posta ile iletilir</span></li>`,
+        card_dm_title:"Dijital Pazarlama", card_dm_kicker:"E-posta, SEO, WhatsApp Pazarlama",
+        card_dm_body:"E-posta kampanyaları, arama optimizasyonu ve WhatsApp pazarlama uyumluluğuna odaklı bütüncül stratejiler.",
+        card_dm_features:`<li>E-posta pazarlama: Planlama, şablonlar, teslim edilebilirlik, satın alma sonrası akışlar</li>
+<li>SEO: Teknik denetimler, sayfa içi düzeltmeler ve B2B’ye uygun içerik planları</li>
+<li>WhatsApp pazarlama: Şablon onayı, kitle segmentasyonu ve politika uyumlu performans takibi</li>
+<li>Performans takibi ve optimizasyon</li>
+<li>B2B odaklı içerik stratejileri</li>`,
+        card_channel_title:"Kanal Aktivasyonu", card_channel_kicker:"Distribütör & İş Ortağı Stratejileri",
+        card_channel_features:`<li>Yeni ülke/pazarlar için pazara giriş planları</li>
+<li>Ticari politika geliştirme</li>
+<li>İskonto/prim (rebate) program tasarımı ve yönetimi</li>
+<li>MDF (Pazar Geliştirme Fonu) aktiviteleri</li>
+<li>2. seviye müşterileri aktive eden hedefli kampanyalar</li>
+<li>İş ortağı yetkinleştirme ve eğitim programları</li>
+<li>Performans izleme ve optimizasyon</li>`,
+        card_pricing_title:"Fiyatlandırma Stratejisi", card_pricing_kicker:"Uçtan Uca B2B Fiyatlandırma Desteği",
+        card_pricing_body:"Ürün portföyünüz genelinde rekabetçilik ile kârlılığı dengeleyen kapsamlı B2B çerçeveleri.",
+        card_pricing_features:`<li>Liste fiyat mimarisi</li>
+<li>Ticari politika & iskonto yapıları</li>
+<li>MDF ve iade/prim çerçeveleri</li>
+<li>Ürün karması fiyatlandırma (yüksek adetli vs. uzun kuyruk)</li>
+<li>Marj optimizasyonu ve takibi</li>
+<li>Rekabetçilik analizi ve izleme</li>
+<li>Dinamik fiyatlandırma önerileri</li>`,
+        contact_title:"Bugün Başlayın",
+        contact_sub:"B2B operasyonlarınızı dönüştürmeye hazır mısınız? Projenizi konuşalım ve büyümenize nasıl katkı sağlayabileceğimizi keşfedelim.",
+        contact_city:"Manisa, Turkiye",
+        label_email:"E-posta", label_phone:"Telefon", label_location:"Konum",
+        start_project:"Projenizi Başlatın",
+        start_project_body:"E-ticaret entegrasyonu, dijital pazarlama, kanal stratejisi veya fiyat optimizasyonu — hedeflerinize ulaşmanız için yanınızdayız.",
+        cta_send_email:"✉️ E-posta Gönder", cta_call_now:"📞 Hemen Ara",
+        footer_tagline:"Teknoloji, pazarlama ve stratejik ortaklıklarla B2B büyümesini hızlandırıyoruz.",
+        footer_services:"Hizmetler", footer_legal:"Hukuki",
+        f_ecom:"SaaS B2B E-ticaret", f_dm:"Dijital Pazarlama", f_channel:"Kanal Aktivasyonu", f_pricing:"Fiyatlandırma Stratejisi",
+        privacy:"Gizlilik Politikası", data_deletion:"Veri Silme", rights:"Tüm hakları saklıdır."
+      },
+      fr: {
+        _title:"Ren Consultancy — Solutions B2B Stratégiques",
+        _desc:"E-commerce B2B SaaS avec intégration WhatsApp, marketing digital, animation de canal et optimisation des prix. Basé à Dubaï, É.A.U.",
+        nav_services:"Services", nav_contact:"Contact", nav_get_started:"Commencer",
+        hero_title:'Développez votre activité avec des <span class="accent">solutions B2B stratégiques</span>',
+        hero_sub:"E-commerce B2B SaaS avec intégration WhatsApp, branding, marketing digital et optimisation tarifaire. Basé à Dubaï, É.A.U.",
+        cta_start_project:"Lancer votre projet →", cta_view_services:"Voir les services",
+        quick_ecom:"E-commerce", quick_ecom_sub:"Intégration WhatsApp",
+        quick_dm:"Marketing Digital", quick_dm_sub:"Email, SEO, WhatsApp",
+        quick_channel:"Animation de Canal", quick_channel_sub:"Stratégies partenaires",
+        quick_pricing:"Stratégie Tarifaire", quick_pricing_sub:"Optimisation B2B",
+        services_title:"Nos Services",
+        services_sub:"Des solutions complètes pour accélérer votre croissance B2B grâce à la technologie, au marketing et aux partenariats stratégiques.",
+        card_ecom_title:"E-commerce", card_ecom_kicker:'<a href="http://www.novalinkyazilim.com/b2b.html" target="_blank" rel="noopener">E-commerce B2B SaaS avec WhatsAppp (B2B Order Hub)</a>',
+        card_ecom_body:"Simplifiez vos ventes B2B avec des solutions e-commerce intégrées à WhatsApp et connectées directement à votre ERP.",
+        key_features:"Points clés :", how_it_works:"Fonctionnement :",
+        card_ecom_features:`<li>Commande centrée WhatsApp : demande de devis et commande dans WhatsApp</li>
+<li>Devis & fichiers : génération automatique de devis PDF/Excel brandés</li>
+<li>Validation des stocks : vérifier la disponibilité dans l’ERP avant paiement</li>
+<li>Paiements sécurisés : pages d’encaissement hébergées (Iyzico, Network International, etc.) avec gestion auto succès/échec</li>
+<li>Intégration ERP : envoi des commandes confirmées vers Odoo, Microsoft Dynamics 365 Business Central, etc.</li>
+<li>Multi-tenant : conçu pour distributeurs et marques</li>`,
+        card_ecom_steps:`<li><span class="dot">1</span><span>Le client demande un devis sur WhatsApp</span></li>
+<li><span class="dot">2</span><span>Le système renvoie le devis + le statut de stock</span></li>
+<li><span class="dot">3</span><span>Le client clique sur un lien de paiement sécurisé</span></li>
+<li><span class="dot">4</span><span>La commande est enregistrée dans l’ERP et la confirmation est envoyée par WhatsApp & email</span></li>`,
+        card_dm_title:"Marketing Digital", card_dm_kicker:"Email, SEO, Marketing WhatsApp",
+        card_dm_body:"Stratégies de marketing digital complètes, axées sur l’emailing, l’optimisation pour les moteurs de recherche et la conformité WhatsApp.",
+        card_dm_features:`<li>Email marketing : planification, modèles, délivrabilité et flux post-achat</li>
+<li>SEO : audits techniques, corrections on-page et plans de contenu orientés B2B</li>
+<li>Marketing WhatsApp : création/validation des modèles, segmentation et suivi de performance conforme aux politiques</li>
+<li>Suivi de performance et optimisation</li>
+<li>Stratégies de contenu orientées B2B</li>`,
+        card_channel_title:"Animation de Canal", card_channel_kicker:"Stratégies distributeurs & partenaires",
+        card_channel_features:`<li>Plans d’entrée sur de nouveaux marchés</li>
+<li>Élaboration de la politique commerciale</li>
+<li>Conception et gestion des programmes de remises (rebates)</li>
+<li>Activités de MDF (Market Development Fund)</li>
+<li>Campagnes ciblées pour activer les clients de 2ᵉ niveau</li>
+<li>Programmes d’habilitation et de formation partenaires</li>
+<li>Suivi et optimisation des performances</li>`,
+        card_pricing_title:"Stratégie Tarifaire", card_pricing_kicker:"Accompagnement B2B de bout en bout",
+        card_pricing_body:"Des cadres tarifaires B2B complets alliant compétitivité et rentabilité sur l’ensemble de votre portefeuille.",
+        card_pricing_features:`<li>Architecture des listes de prix</li>
+<li>Politiques commerciales & structures de remises</li>
+<li>Cadres MDF et programmes de remises</li>
+<li>Stratégies tarifaires par mix produit (best-sellers vs. longue traîne)</li>
+<li>Optimisation des marges et suivi</li>
+<li>Analyse et veille concurrentielles</li>
+<li>Recommandations de tarification dynamique</li>`,
+        contact_title:"Commencez dès aujourd’hui",
+        contact_sub:"Prêt à transformer vos opérations B2B ? Contactez-nous pour discuter de votre projet et découvrir comment nous pouvons vous aider à grandir.",
+        contact_city:"Dubaï, É.A.U.",
+        label_email:"Email", label_phone:"Téléphone", label_location:"Localisation",
+        start_project:"Lancer votre projet",
+        start_project_body:"Intégration e-commerce, marketing digital, stratégie de canal ou optimisation tarifaire : nous vous aidons à atteindre vos objectifs.",
+        cta_send_email:"✉️ Envoyer un email", cta_call_now:"📞 Appeler maintenant",
+        footer_tagline:"Nous accélérons la croissance B2B grâce à la technologie, au marketing et aux partenariats stratégiques.",
+        footer_services:"Services", footer_legal:"Légal",
+        f_ecom:"E-commerce B2B SaaS", f_dm:"Marketing Digital", f_channel:"Animation de Canal", f_pricing:"Stratégie Tarifaire",
+        privacy:"Politique de Confidentialité", data_deletion:"Suppression des Données", rights:"Tous droits réservés."
+      }
+    };
+
+function applyLang(lang){
+    const dict = I18N[lang] || I18N.en;
+
+    // Plain text
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if (dict[key]) el.textContent = dict[key];
+    });
+
+    // HTML (for items containing markup)
+    document.querySelectorAll("[data-i18n-html]").forEach(el=>{
+      const key = el.getAttribute("data-i18n-html");
+      if (dict[key]) el.innerHTML = dict[key];
+    });
+
+    // Title + meta description
+    document.title = dict._title || I18N.en._title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', dict._desc || I18N.en._desc);
+
+    // <html lang="">
+    document.documentElement.setAttribute("lang", lang);
+
+    // Flag active state
+    document.querySelectorAll(".lang button").forEach(b=>{
+      b.classList.toggle("active", b.dataset.lang === lang);
+    });
+
+    // Remember
+    try { localStorage.setItem("site_lang", lang); } catch(e){}
+  }
+
+  // Helpers for URL sync
+  function getLangFromQuery(){
+    const m = new URLSearchParams(location.search).get("lang");
+    return m && I18N[m] ? m : null;
+  }
+  function setLangInUrl(lang){
+    const url = new URL(location.href);
+    url.searchParams.set("lang", lang);
+    history.replaceState({}, "", url.toString());
+  }
+
+  // Initial language: query -> stored -> browser -> en
+  const queryLang = getLangFromQuery();
+  let storedLang = null;
+  try { storedLang = localStorage.getItem("site_lang"); } catch(e){}
+  const browserLang = (navigator.language || "en").slice(0,2).toLowerCase();
+
+  const initial =
+    (queryLang && I18N[queryLang] && queryLang) ||
+    (storedLang && I18N[storedLang] && storedLang) ||
+    (I18N[browserLang] ? browserLang : "en");
+
+  applyLang(initial);
+  setLangInUrl(initial);
+
+  // Event listeners (only once)
+  document.querySelectorAll(".lang button").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const lang = btn.dataset.lang;
+      applyLang(lang);
+      setLangInUrl(lang);
+    });
+  });
+  </script>
+</body>
+</html>
